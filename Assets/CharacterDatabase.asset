@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: CharacterDatabase
   m_EditorClassIdentifier: 
   character:
-  - characterName: car 1
-    characterSprite: {fileID: 4595081958609607256, guid: 5fed9826704b1b94cb97aac5b22bf79d, type: 3}
-  - characterName: car 2
-    characterSprite: {fileID: -1908788284259789754, guid: 7f2712aa9958a344ebd0e49735645057, type: 3}
+  - Name: Car 1
+    Image: {fileID: 4595081958609607256, guid: 5fed9826704b1b94cb97aac5b22bf79d, type: 3}
+    Speed: 0
+  - Name: Car 2
+    Image: {fileID: -1908788284259789754, guid: 7f2712aa9958a344ebd0e49735645057, type: 3}
+    Speed: 0

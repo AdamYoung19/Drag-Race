@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Character
 {
-    public string characterName;
-    public Sprite characterSprite;
+    public string Name;
+    public Sprite Image;
+
+    public int Speed;
 }
