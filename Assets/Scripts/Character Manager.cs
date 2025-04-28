@@ -10,62 +10,62 @@ public class CharacterManager : MonoBehaviour
     public Text nameText;
     public SpriteRenderer artworkSprite;
 
-    private int selectedOption = 0;
+    private int Player_1 = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(!PlayerPrefs.HasKey("SelectedOption"))
+        if(!PlayerPrefs.HasKey("Player_1"))
         {
-            selectedOption = 0;
+            Player_1 = 0;
         }
         
         else
         {
             Load();
         }
-        UpdateCharacter(selectedOption);
+        UpdateCharacter(Player_1);
     }
 
     public void NextOption()
     {
-        selectedOption++;
-        if (selectedOption >= characterDB.CharacterCount)
+        Player_1++;
+        if (Player_1 >= characterDB.CharacterCount)
         {
-            selectedOption = 0;
+            Player_1 = 0;
         }
 
-        UpdateCharacter(selectedOption);
+        UpdateCharacter(Player_1);
         Save();
     }
 
     public void BackOption()
     {
-        selectedOption--;
-        if (selectedOption < 0)
+        Player_1--;
+        if (Player_1 < 0)
         {
-            selectedOption = characterDB.CharacterCount - 1;
+            Player_1 = characterDB.CharacterCount - 1;
         }
 
-        UpdateCharacter(selectedOption);
+        UpdateCharacter(Player_1);
         Save();
     }
 
-    public void UpdateCharacter(int selectedOption)
+    public void UpdateCharacter(int Player_1)
     {
-        Character character = characterDB.GetCharacter(selectedOption);
+        Character character = characterDB.GetCharacter(Player_1);
         artworkSprite.sprite = character.Image;
         nameText.text = character.Name;
     }
 
     private void Load()
     {
-        selectedOption = PlayerPrefs.GetInt("SelectedOption");
+        Player_1 = PlayerPrefs.GetInt("Player_1");
     }
 
     private void Save()
     {
-        PlayerPrefs.SetInt("SelectedOption", selectedOption);
+        PlayerPrefs.SetInt("Player_1", Player_1);
     }
     
 }
