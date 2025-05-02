@@ -9,5 +9,11 @@ public class FinishLine : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+        else if(collision.tag == "Computer")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+
+
+        }
     }
 }
