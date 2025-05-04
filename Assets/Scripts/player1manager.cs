@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class player1manger : MonoBehaviour
 {
     public CharacterDatabase characterDB;
-
+    public GravityController gravityController;
     public Text nameText;
     public SpriteRenderer artworkSprite;
 
@@ -56,6 +56,7 @@ public class player1manger : MonoBehaviour
         Character character = characterDB.GetCharacter(Player_1);
         artworkSprite.sprite = character.Image;
         nameText.text = character.Name;
+        gravityController.SetGravityBasedOnSpeed(character.Speed);
     }
 
     private void Load()

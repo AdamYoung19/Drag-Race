@@ -713,6 +713,7 @@ GameObject:
   - component: {fileID: 869300229}
   - component: {fileID: 869300234}
   - component: {fileID: 869300235}
+  - component: {fileID: 869300236}
   m_Layer: 0
   m_Name: playercar
   m_TagString: Untagged
@@ -862,6 +863,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterDB: {fileID: 11400000, guid: ab38af0a42d99f3478e211e9267c2d7f, type: 2}
   artworkSprite: {fileID: 869300231}
+--- !u!114 &869300236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 869300227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68eaae82fb70d0e42be340504238c6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb2d: {fileID: 869300234}
+  gravity: 0
 --- !u!1 &1033641550
 GameObject:
   m_ObjectHideFlags: 0

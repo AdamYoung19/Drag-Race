@@ -11,8 +11,10 @@ public class QTEsys : MonoBehaviour
     public int CorrectKey;
     public int CountingDown;
 
+
     void Update ()
     {
+    
         if (WaitingForKey == 0)
         {
             QTEGen = Random.Range(1,4);
