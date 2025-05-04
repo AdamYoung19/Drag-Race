@@ -3,16 +3,17 @@ using UnityEngine.SceneManagement;
 
 public class FinishLine : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void OnTriggerEnter()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if(collision.tag == "Player")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else if(collision.tag == "Computer")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
 
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
     }
 }
