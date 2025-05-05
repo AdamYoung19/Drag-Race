@@ -141,6 +141,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -509,7 +522,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      MS-DOS - Highway Hunter - Road Sections_0: -9152592713231007365
+      MS-DOS - Highway Hunter - Road Sections_1: -2843539999495640247
+      MS-DOS - Highway Hunter - Road Sections_10: 8218492568956796089
+      MS-DOS - Highway Hunter - Road Sections_11: -4300370319528162476
+      MS-DOS - Highway Hunter - Road Sections_12: -5565595136885918494
+      MS-DOS - Highway Hunter - Road Sections_13: 8240196296929598823
+      MS-DOS - Highway Hunter - Road Sections_14: -3727940002948522471
+      MS-DOS - Highway Hunter - Road Sections_15: -925580680316541120
+      MS-DOS - Highway Hunter - Road Sections_2: -4819011083663970926
+      MS-DOS - Highway Hunter - Road Sections_3: 3110991955739300131
+      MS-DOS - Highway Hunter - Road Sections_4: -3026047947330695193
+      MS-DOS - Highway Hunter - Road Sections_5: 8739822747158260010
+      MS-DOS - Highway Hunter - Road Sections_6: -8740075576078167552
+      MS-DOS - Highway Hunter - Road Sections_7: 3067346188407783457
+      MS-DOS - Highway Hunter - Road Sections_8: -2720244619421183254
+      MS-DOS - Highway Hunter - Road Sections_9: -395977559397357554
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
