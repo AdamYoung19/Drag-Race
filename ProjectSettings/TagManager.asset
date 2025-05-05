@@ -40,8 +40,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 221371145
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Road
+    uniqueID: 35895569
     locked: 0
   m_RenderingLayers:
   - Default
