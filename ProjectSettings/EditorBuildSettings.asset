@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/player2select.unity
     guid: e6715f657cab918408d19b3748c32b32
   - enabled: 1
-    path: Assets/Scenes/SelectionScrene.unity
+    path: Assets/Scenes/SelectionScreen.unity
     guid: e912d8802a0a09446b573df5807e0d4f
   - enabled: 1
     path: Assets/Scenes/Main Game.unity

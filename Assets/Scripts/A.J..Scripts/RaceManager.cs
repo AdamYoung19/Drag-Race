@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq; // Required for LINQ queries (like FirstOrDefault)
+using UnityEngine.SceneManagement; // Required for loading scenes
 using TMPro; // Required for TextMeshPro
 using Unity.Cinemachine; // Required for CinemachineVirtualCamera
 
@@ -16,22 +17,32 @@ public class RaceManager : MonoBehaviour
     [Tooltip("Transform defining where the opponent's car should spawn.")]
     public Transform opponentSpawnPoint; // Add more if needed
 
-    // Removed opponentCarData field - it will be loaded from PlayerPrefs now
-
     [Tooltip("Time in seconds for the countdown before the race starts.")]
     public float countdownTime = 3.0f;
 
-    [Header("Camera")] // NEW SECTION
+    [Header("Camera")]
     [Tooltip("Assign the Cinemachine Virtual Camera that should follow the player.")]
     public CinemachineCamera playerVirtualCamera; // Assign your player's VCcam here
 
     [Header("UI")]
     [Tooltip("Assign the TextMeshPro UI element for displaying countdown, timer, and results.")]
     public TextMeshProUGUI statusText; // Assign your TextMeshProUGUI component here
+    [Tooltip("Assign the Button GameObject that returns to Character Selection.")]
+    public GameObject returnToSelectionButton; // Renamed for clarity
+    [Tooltip("Assign the Button GameObject that restarts the current race.")]
+    public GameObject restartRaceButton;
+    [Tooltip("Assign the TextMeshPro UI element used for the Player's Skill Check prompts.")]
+    public TextMeshProUGUI playerSkillCheckUI; // Reference for Skill Check UI
+
 
     [Header("Finish Line")]
     [Tooltip("Assign the Finish Line GameObject here.")]
     public GameObject finishLine; // Assign the finish line object
+
+    [Header("Scene Management")]
+    [Tooltip("The name of the character selection scene to load.")]
+    public string characterSelectionSceneName = "CarSelection"; // Make sure this matches your selection scene name
+
 
     // --- Private Variables ---
     private List<AutoDrive2D> raceParticipants = new List<AutoDrive2D>(); // List to hold the spawned cars
@@ -40,6 +51,7 @@ public class RaceManager : MonoBehaviour
     private float raceStartTime;
     private Dictionary<string, float> finishTimes = new Dictionary<string, float>();
     private int carsFinishedCount = 0;
+    private Coroutine countdownCoroutine; // To store the active countdown coroutine
 
     // --- Constants for PlayerPrefs Keys (Defined here for clarity) ---
     // These strings MUST match the ones used in CarSelectionManager
@@ -51,14 +63,18 @@ public class RaceManager : MonoBehaviour
 
     void Awake() // Changed from Start to ensure spawning happens early
     {
-        // Initial checks
+        // Initial checks for assigned references
         if (statusText == null) { Debug.LogError("Status Text not assigned.", this); enabled = false; return; }
         if (finishLine == null) { Debug.LogError("Finish Line not assigned.", this); enabled = false; return; }
         if (playerSpawnPoint == null) { Debug.LogError("Player Spawn Point not assigned.", this); enabled = false; return; }
         if (opponentSpawnPoint == null) { Debug.LogError("Opponent Spawn Point not assigned.", this); enabled = false; return; }
-        // Removed opponentCarData check - loaded dynamically now
         if (allPossibleCars == null || allPossibleCars.Count == 0) { Debug.LogError("All Possible Cars list is empty.", this); enabled = false; return; }
-        if (playerVirtualCamera == null) { Debug.LogError("Player Virtual Camera is not assigned in the RaceManager!", this); enabled = false; return; } // Check for camera
+        if (playerVirtualCamera == null) { Debug.LogError("Player Virtual Camera is not assigned!", this); enabled = false; return; }
+        if (returnToSelectionButton == null) { Debug.LogError("Return To Selection Button is not assigned!", this); enabled = false; return; }
+        if (restartRaceButton == null) { Debug.LogError("Restart Race Button is not assigned!", this); enabled = false; return; }
+        if (playerSkillCheckUI == null) { Debug.LogError("Player Skill Check UI is not assigned!", this); enabled = false; return; }
+        if (string.IsNullOrEmpty(characterSelectionSceneName)) { Debug.LogError("Character Selection Scene Name is not set!", this); enabled = false; return; }
+
 
         // Spawn cars before doing anything else
         SpawnCars();
@@ -66,6 +82,11 @@ public class RaceManager : MonoBehaviour
 
     void Start()
     {
+        // Hide buttons and skill check UI initially
+        if (returnToSelectionButton != null) returnToSelectionButton.SetActive(false);
+        if (restartRaceButton != null) restartRaceButton.SetActive(false);
+        if (playerSkillCheckUI != null) playerSkillCheckUI.gameObject.SetActive(false); // Hide skill check UI
+
         // Get the FinishLine script component to potentially reset it
         FinishLine finishLineScript = finishLine.GetComponent<FinishLine>();
         if (finishLineScript == null)
@@ -84,7 +105,7 @@ public class RaceManager : MonoBehaviour
 
         // Reset race state and start the countdown
         ResetRace(); // ResetRace now uses raceParticipants list
-        StartCoroutine(CountdownCoroutine());
+        StartRaceCountdown(); // Call the new method to start the process
     }
 
     // Update is called once per frame
@@ -101,61 +122,52 @@ public class RaceManager : MonoBehaviour
     // --- Spawning Logic ---
     private void SpawnCars()
     {
-        raceParticipants.Clear(); // Clear any previous participants
+        // --- Clean up existing cars ---
+        foreach (AutoDrive2D participant in raceParticipants) { if (participant != null) Destroy(participant.gameObject); }
+        raceParticipants.Clear();
 
-        // --- Determine Player Car Data ---
-        // Use the locally defined constant string for the PlayerPrefs key
+        // --- Determine Car Data ---
         string selectedPlayerCarDataName = PlayerPrefs.GetString(PlayerCarPrefKey, "");
         CarData playerCarData = FindCarDataByName(selectedPlayerCarDataName, "Player");
-
-        // --- Determine Opponent Car Data ---
-        // Use the locally defined constant string for the PlayerPrefs key
-        string selectedOpponentCarDataName = PlayerPrefs.GetString(OpponentCarPrefKey, ""); // Use opponent key string
-        CarData opponentCarData = FindCarDataByName(selectedOpponentCarDataName, "Opponent"); // Find opponent data
+        string selectedOpponentCarDataName = PlayerPrefs.GetString(OpponentCarPrefKey, "");
+        CarData opponentCarData = FindCarDataByName(selectedOpponentCarDataName, "Opponent");
 
         // --- Spawn Player Car ---
         if (playerCarData != null && playerCarData.carPrefab != null)
         {
             GameObject playerCarInstance = Instantiate(playerCarData.carPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation);
-            playerCarInstance.name = "PlayerCar_" + playerCarData.carName;
+            playerCarInstance.name = "Player"; // Set simple name
             AutoDrive2D playerDriver = playerCarInstance.GetComponent<AutoDrive2D>();
             if (playerDriver != null)
             {
-                playerDriver.Initialize(playerCarData);
+                // Pass TRUE for isPlayer and the UI reference
+                playerDriver.Initialize(playerCarData, true, playerSkillCheckUI);
                 raceParticipants.Add(playerDriver);
                 Debug.Log($"Spawned Player Car: {playerCarInstance.name} using Data: {playerCarData.name}");
 
-                // *** ASSIGN CAMERA TARGET ***
-                if (playerVirtualCamera != null)
-                {
-                    playerVirtualCamera.Follow = playerCarInstance.transform;
-                    // Optional: Also set LookAt if your camera setup requires it
-                    // playerVirtualCamera.LookAt = playerCarInstance.transform;
-                    Debug.Log($"Assigned {playerCarInstance.name} to Player Virtual Camera Follow target.");
-                }
-                else
-                {
-                    Debug.LogError("Cannot assign camera target - Player Virtual Camera reference is missing on RaceManager!");
-                }
+                // Assign camera target
+                if (playerVirtualCamera != null) { playerVirtualCamera.Follow = playerCarInstance.transform; }
+                else { Debug.LogError("Cannot assign camera target - Player Virtual Camera reference missing!"); }
             }
-            else { Debug.LogError($"Spawned player prefab '{playerCarData.carPrefab.name}' is missing AutoDrive2D script!", playerCarData.carPrefab); }
+            else { Debug.LogError($"Player prefab '{playerCarData.carPrefab.name}' missing AutoDrive2D script!", playerCarData.carPrefab); }
         }
         else { Debug.LogError($"Could not spawn player car. Data: {playerCarData?.name}, Prefab Missing: {playerCarData?.carPrefab == null}", playerCarData); }
 
 
         // --- Spawn Opponent Car ---
-        if (opponentCarData != null && opponentCarData.carPrefab != null) // Check opponent data too
+        if (opponentCarData != null && opponentCarData.carPrefab != null)
         {
             GameObject opponentCarInstance = Instantiate(opponentCarData.carPrefab, opponentSpawnPoint.position, opponentSpawnPoint.rotation);
-            opponentCarInstance.name = "OpponentCar_" + opponentCarData.carName;
+            opponentCarInstance.name = "Computer"; // Set simple name
             AutoDrive2D opponentDriver = opponentCarInstance.GetComponent<AutoDrive2D>();
             if (opponentDriver != null)
             {
-                opponentDriver.Initialize(opponentCarData);
+                // Pass FALSE for isPlayer and NULL for UI
+                opponentDriver.Initialize(opponentCarData, false, null);
                 raceParticipants.Add(opponentDriver);
                 Debug.Log($"Spawned Opponent Car: {opponentCarInstance.name} using Data: {opponentCarData.name}");
             }
-            else { Debug.LogError($"Spawned opponent prefab '{opponentCarData.carPrefab.name}' is missing AutoDrive2D script!", opponentCarData.carPrefab); }
+            else { Debug.LogError($"Opponent prefab '{opponentCarData.carPrefab.name}' missing AutoDrive2D script!", opponentCarData.carPrefab); }
         }
         else { Debug.LogError($"Could not spawn opponent car. Data: {opponentCarData?.name}, Prefab Missing: {opponentCarData?.carPrefab == null}", opponentCarData); }
 
@@ -163,7 +175,7 @@ public class RaceManager : MonoBehaviour
     }
 
     // Helper method to find CarData, reducing code duplication
-    private CarData FindCarDataByName(string dataName, string carType) // carType is for logging (e.g., "Player", "Opponent")
+    private CarData FindCarDataByName(string dataName, string carType)
     {
         CarData foundData = null;
         if (!string.IsNullOrEmpty(dataName))
@@ -174,14 +186,8 @@ public class RaceManager : MonoBehaviour
         if (foundData == null)
         {
             Debug.LogWarning($"Selected {carType} car data '{dataName}' not found or not selected. Using first car as default.");
-            if (allPossibleCars.Count > 0)
-            {
-                foundData = allPossibleCars[0]; // Fallback
-            }
-            else
-            {
-                Debug.LogError($"Cannot find fallback {carType} car data - AllPossibleCars list is empty!");
-            }
+            if (allPossibleCars.Count > 0) { foundData = allPossibleCars[0]; }
+            else { Debug.LogError($"Cannot find fallback {carType} car data - AllPossibleCars list is empty!"); }
         }
         return foundData;
     }
@@ -190,6 +196,11 @@ public class RaceManager : MonoBehaviour
     // --- Coroutines ---
     private IEnumerator CountdownCoroutine()
     {
+        // Hide buttons during countdown/race
+        if (returnToSelectionButton != null) returnToSelectionButton.SetActive(false);
+        if (restartRaceButton != null) restartRaceButton.SetActive(false);
+        if (playerSkillCheckUI != null) playerSkillCheckUI.gameObject.SetActive(false); // Ensure hidden
+
         // Countdown Phase
         float timer = countdownTime;
         while (timer > 0)
@@ -204,6 +215,7 @@ public class RaceManager : MonoBehaviour
         StartRace();
 
         yield return new WaitForSeconds(0.25f);
+        countdownCoroutine = null; // Mark coroutine as finished
     }
 
     // --- Public Methods ---
@@ -211,9 +223,7 @@ public class RaceManager : MonoBehaviour
     {
         if (!raceStarted || raceFinished) return;
 
-        AutoDrive2D finishedDriver = carObject.GetComponent<AutoDrive2D>();
-        string carName = carObject.name; // Use GameObject name which includes Player/Opponent prefix
-
+        string carName = carObject.name;
         if (finishTimes.ContainsKey(carName)) return;
 
         float time = Time.time - raceStartTime;
@@ -228,30 +238,58 @@ public class RaceManager : MonoBehaviour
         {
             Debug.Log($"Race finished check: Condition met! Count: {carsFinishedCount}, Total Participants: {raceParticipants.Count}");
             raceFinished = true;
-            DetermineWinner();
+            DetermineWinner(); // DetermineWinner will now show the buttons
         }
     }
 
+    // Method called by the "Return to Selection" Button's OnClick event
+    public void ReturnToSelection()
+    {
+        Debug.Log("ReturnToSelection called. Loading scene: " + characterSelectionSceneName);
+        // Add any cleanup if needed before loading
+        SceneManager.LoadScene(characterSelectionSceneName);
+    }
+
+    // Method called by the "Restart Race" Button's OnClick event
+    public void RestartCurrentRace()
+    {
+        Debug.Log("RestartCurrentRace called.");
+        // Reset the race state (positions, variables, etc.)
+        ResetRace();
+        // Start the countdown again
+        StartRaceCountdown();
+    }
+
+
     // --- Private Methods ---
+    private void StartRaceCountdown()
+    {
+        // Stop previous countdown if it was somehow still running
+        if (countdownCoroutine != null)
+        {
+            StopCoroutine(countdownCoroutine);
+        }
+        countdownCoroutine = StartCoroutine(CountdownCoroutine());
+    }
+
     private void StartRace()
     {
-        if (raceParticipants.Count == 0)
-        {
-            Debug.LogError("Cannot start race - no participants were spawned or added!");
-            return;
-        }
+        if (raceParticipants.Count == 0) { Debug.LogError("Cannot start race - no participants!"); return; }
 
         raceStarted = true;
         raceStartTime = Time.time;
         finishTimes.Clear();
         carsFinishedCount = 0;
 
+        // Ensure buttons are hidden at race start
+        if (returnToSelectionButton != null) returnToSelectionButton.SetActive(false);
+        if (restartRaceButton != null) restartRaceButton.SetActive(false);
+        if (playerSkillCheckUI != null) playerSkillCheckUI.gameObject.SetActive(false); // Ensure hidden
+
+
         foreach (AutoDrive2D car in raceParticipants)
         {
-            if (car != null)
-            {
-                car.StartDriving();
-            }
+            if (car != null) car.StartDriving();
         }
         Debug.Log("Race Started!");
     }
@@ -284,16 +322,17 @@ public class RaceManager : MonoBehaviour
         }
         finalResults += $"\n{winner.Key} Wins!";
         statusText.text = finalResults;
+
+        // Show buttons
+        if (returnToSelectionButton != null) returnToSelectionButton.SetActive(true);
+        if (restartRaceButton != null) restartRaceButton.SetActive(true);
     }
 
-    private void StopAllCars()
+    private void StopAllCars() // Optional: Called if needed
     {
         foreach (AutoDrive2D car in raceParticipants)
         {
-            if (car != null && !car.IsFinished)
-            {
-                car.ResetState();
-            }
+            if (car != null && !car.IsFinished) car.ResetState();
         }
     }
 
@@ -305,36 +344,38 @@ public class RaceManager : MonoBehaviour
         carsFinishedCount = 0;
         statusText.text = "Ready...";
 
+        // Hide buttons and skill check UI during reset
+        if (returnToSelectionButton != null) returnToSelectionButton.SetActive(false);
+        if (restartRaceButton != null) restartRaceButton.SetActive(false);
+        if (playerSkillCheckUI != null) playerSkillCheckUI.gameObject.SetActive(false);
+
+
         // Reset states of spawned cars
         foreach (AutoDrive2D car in raceParticipants)
         {
             if (car != null)
             {
-                // Reset position/rotation to spawn points AND internal state
-                if (car.name.StartsWith("PlayerCar"))
+                // Reset position/rotation based on the exact names
+                if (car.name == "Player")
                 {
                     car.transform.position = playerSpawnPoint.position;
                     car.transform.rotation = playerSpawnPoint.rotation;
                 }
-                else if (car.name.StartsWith("OpponentCar"))
+                else if (car.name == "Computer")
                 {
                     car.transform.position = opponentSpawnPoint.position;
                     car.transform.rotation = opponentSpawnPoint.rotation;
                 }
-                car.ResetState();
+                car.ResetState(); // Reset internal driving state
             }
+            // Note: We don't destroy/respawn cars here, just reset their state & position
         }
 
         // Reset the finish line trigger
         FinishLine finishLineScript = finishLine.GetComponent<FinishLine>();
-        if (finishLineScript != null)
-        {
-            finishLineScript.ResetTrigger();
-        }
-        else
-        {
-            Debug.LogError("Could not find FinishLine script on Finish Line object to reset trigger.", finishLine);
-        }
+        if (finishLineScript != null) finishLineScript.ResetTrigger();
+        else { Debug.LogError("Could not find FinishLine script on Finish Line object to reset trigger.", finishLine); }
+
         Debug.Log("Race Reset.");
     }
 }
