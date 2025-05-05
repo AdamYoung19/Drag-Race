@@ -8,16 +8,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title Screen.unity
     guid: 0ab879b2f5e82194f9dc6ef1a2795d7c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/player1select.unity
     guid: e8df01768353b3549af996f55c036b2d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/player2select.unity
     guid: e6715f657cab918408d19b3748c32b32
   - enabled: 1
+    path: Assets/Scenes/SelectionScrene.unity
+    guid: e912d8802a0a09446b573df5807e0d4f
+  - enabled: 1
     path: Assets/Scenes/Main Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/WinScreen.unity
     guid: 756449f52264c6e47b874a76a64c62fe
   m_configObjects:
