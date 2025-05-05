@@ -1,0 +1,517 @@
+fileFormatVersion: 2
+guid: 234433ad6533ad24d91d3627d6723371
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -9152592713231007365
+    second: MS-DOS - Highway Hunter - Road Sections_0
+  - first:
+      213: -2843539999495640247
+    second: MS-DOS - Highway Hunter - Road Sections_1
+  - first:
+      213: -4819011083663970926
+    second: MS-DOS - Highway Hunter - Road Sections_2
+  - first:
+      213: 3110991955739300131
+    second: MS-DOS - Highway Hunter - Road Sections_3
+  - first:
+      213: -3026047947330695193
+    second: MS-DOS - Highway Hunter - Road Sections_4
+  - first:
+      213: 8739822747158260010
+    second: MS-DOS - Highway Hunter - Road Sections_5
+  - first:
+      213: -8740075576078167552
+    second: MS-DOS - Highway Hunter - Road Sections_6
+  - first:
+      213: 3067346188407783457
+    second: MS-DOS - Highway Hunter - Road Sections_7
+  - first:
+      213: -2720244619421183254
+    second: MS-DOS - Highway Hunter - Road Sections_8
+  - first:
+      213: -395977559397357554
+    second: MS-DOS - Highway Hunter - Road Sections_9
+  - first:
+      213: 8218492568956796089
+    second: MS-DOS - Highway Hunter - Road Sections_10
+  - first:
+      213: -4300370319528162476
+    second: MS-DOS - Highway Hunter - Road Sections_11
+  - first:
+      213: -5565595136885918494
+    second: MS-DOS - Highway Hunter - Road Sections_12
+  - first:
+      213: 8240196296929598823
+    second: MS-DOS - Highway Hunter - Road Sections_13
+  - first:
+      213: -3727940002948522471
+    second: MS-DOS - Highway Hunter - Road Sections_14
+  - first:
+      213: -925580680316541120
+    second: MS-DOS - Highway Hunter - Road Sections_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_0
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 389
+        width: 144
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b71890a7b657bf080800000000000000
+      internalID: -9152592713231007365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_1
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 380
+        width: 145
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ba279af67b988d0800000000000000
+      internalID: -2843539999495640247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_2
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 380
+        width: 145
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29de98d93fe6f1db0800000000000000
+      internalID: -4819011083663970926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_3
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 292
+        width: 152
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32150f473b67c2b20800000000000000
+      internalID: 3110991955739300131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_4
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 302
+        width: 144
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7efcd02bc615106d0800000000000000
+      internalID: -3026047947330695193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_5
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 302
+        width: 144
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a292f34ab761a4970800000000000000
+      internalID: 8739822747158260010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_6
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 214
+        width: 144
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0021bc9029305b680800000000000000
+      internalID: -8740075576078167552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_7
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 204
+        width: 140
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 120c13b5b17619a20800000000000000
+      internalID: 3067346188407783457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_8
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 204
+        width: 144
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae29b3d5eefbf3ad0800000000000000
+      internalID: -2720244619421183254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_9
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 125
+        width: 144
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e082819f184318af0800000000000000
+      internalID: -395977559397357554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_10
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 122
+        width: 144
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bc7bd1b273fd0270800000000000000
+      internalID: 8218492568956796089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_11
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 122
+        width: 144
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45b04ed8af30254c0800000000000000
+      internalID: -4300370319528162476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_12
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 41
+        width: 144
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e4f546f5b803c2b0800000000000000
+      internalID: -5565595136885918494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_13
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 45
+        width: 144
+        height: 68
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76d5af5afde0b5270800000000000000
+      internalID: 8240196296929598823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_14
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 36
+        width: 145
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91ed84c9152b34cc0800000000000000
+      internalID: -3727940002948522471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MS-DOS - Highway Hunter - Road Sections_15
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 7
+        width: 178
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 047a4c2764da723f0800000000000000
+      internalID: -925580680316541120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
