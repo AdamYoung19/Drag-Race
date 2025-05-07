@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
     }
 
+    //public void MainScreen() //This function is going to load the main menu when button is pressed
+    //{
+    //    ///SceneManager.LoadScene(SceneManager.SetActiveScene(0));
+    //}
+
     public void QuitGame()
     {
         Application.Quit();
