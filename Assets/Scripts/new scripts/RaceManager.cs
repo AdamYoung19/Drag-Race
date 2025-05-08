@@ -309,23 +309,46 @@ public class RaceManager : MonoBehaviour
     }
 
     private void DetermineWinner()
-    {
+   {
         if (finishTimes.Count == 0) return;
 
+        // Determine the winner and loser
         KeyValuePair<string, float> winner = finishTimes.OrderBy(pair => pair.Value).First();
+        KeyValuePair<string, float> loser = finishTimes.OrderBy(pair => pair.Value).Last();
+
         Debug.Log($"Winner determined: {winner.Key} with time {winner.Value:F2}");
 
-        string finalResults = "Final Results:\n";
-        foreach (var pair in finishTimes.OrderBy(p => p.Value))
-        {
-            finalResults += $"{pair.Key}: {pair.Value:F2}s\n";
-        }
-        finalResults += $"\n{winner.Key} Wins!";
-        statusText.text = finalResults;
+        // Save the winner and loser names
+        PlayerPrefs.SetString("PodiumWinner", winner.Key);
+        PlayerPrefs.SetString("PodiumLoser", loser.Key);
 
-        // Show buttons
-        if (returnToSelectionButton != null) returnToSelectionButton.SetActive(true);
-        if (restartRaceButton != null) restartRaceButton.SetActive(true);
+        // Save the sprites of the player and computer
+        foreach (AutoDrive2D car in raceParticipants)
+        {
+            SpriteRenderer spriteRenderer = car.GetComponentInChildren<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                if (car.name == "Player")
+                {
+                    PlayerPrefs.SetString("PlayerSprite", spriteRenderer.sprite.name);
+                    Debug.Log($"Saved Player Sprite: {spriteRenderer.sprite.name}");
+                }
+                else if (car.name == "Computer")
+                {
+                    PlayerPrefs.SetString("ComputerSprite", spriteRenderer.sprite.name);
+                    Debug.Log($"Saved Computer Sprite: {spriteRenderer.sprite.name}");
+                }
+            }
+            else
+            {
+                Debug.LogError($"Car '{car.name}' does not have a SpriteRenderer!");
+            }
+        }
+
+        PlayerPrefs.Save();
+
+        // Load the podium scene
+        SceneManager.LoadScene("PodiumScene");
     }
 
     private void StopAllCars() // Optional: Called if needed

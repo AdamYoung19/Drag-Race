@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/OptionsMenu.unity
     guid: 49a5042ed51df3748bff5df2efd3c847
+  - enabled: 1
+    path: Assets/Scenes/PodiumScene.unity
+    guid: e4a5aa4d9b4bbac47ab34a37d6e95afe
   - enabled: 0
     path: Assets/Scenes/player2select.unity
     guid: e6715f657cab918408d19b3748c32b32
