@@ -522,7 +522,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -345, y: -103}
+  m_AnchoredPosition: {x: -11.820068, y: -293.08997}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &524339279
@@ -624,7 +624,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614068166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 54.000004}
+  m_LocalPosition: {x: 0, y: 0, z: 54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -636,7 +636,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 493, y: -83}
+  m_AnchoredPosition: {x: 153.62, y: 91}
   m_SizeDelta: {x: -107.65, y: 124.406}
   m_Pivot: {x: -0.66688395, y: 0.5}
 --- !u!1 &698612816
@@ -806,7 +806,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -345, y: 6}
+  m_AnchoredPosition: {x: -11.820068, y: -184.08997}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &699922061
@@ -942,7 +942,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -345, y: 400}
+  m_AnchoredPosition: {x: -11.820068, y: 209.91003}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &787249622
@@ -1293,7 +1293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -333.18, y: 190.09}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 176.3573, y: 318.18}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1031948939
@@ -1776,7 +1776,7 @@ MonoBehaviour:
   carDisplayImage: {fileID: 1031948940}
   carNameText: {fileID: 699922061}
   carStatsText: {fileID: 458760390}
-  raceSceneName: Oppselection Sceen
+  raceSceneName: OppselectionSceen
 --- !u!4 &2132474754
 Transform:
   m_ObjectHideFlags: 0
