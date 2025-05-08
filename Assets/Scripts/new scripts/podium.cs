@@ -11,54 +11,42 @@ public class PodiumManager : MonoBehaviour
     [Header("UI Elements")]
     public TextMeshProUGUI winnerText; // Assign the TextMeshPro for the winner's name
     void Start()
+{
+    // Retrieve winner and loser names and sprite names from PlayerPrefs
+    string winnerName = PlayerPrefs.GetString("PodiumWinner", "Winner");
+    string playerSpriteName = PlayerPrefs.GetString("PlayerSprite", "");
+    string computerSpriteName = PlayerPrefs.GetString("ComputerSprite", "");
+
+    Debug.Log($"Retrieved Player Sprite Name: {playerSpriteName}");
+    Debug.Log($"Retrieved Computer Sprite Name: {computerSpriteName}");
+
+    // Display names in the UI
+    if (winnerText != null) winnerText.text = $"Winner: {winnerName}";
+
+    // Assign the winner's sprite
+    Sprite winnerSprite = Resources.Load<Sprite>($"Sprites/{playerSpriteName}");
+    if (winnerSprite != null && winnerSpriteRenderer != null)
     {
-        // Retrieve winner and loser names and sprite names from PlayerPrefs
-        string winnerName = PlayerPrefs.GetString("PodiumWinner", "Winner");
-        string playerSpriteName = PlayerPrefs.GetString("PlayerSprite", "");
-        string computerSpriteName = PlayerPrefs.GetString("ComputerSprite", "");
-
-        // Display names in the UI
-        if (winnerText != null) winnerText.text = $"Winner: {winnerName}";
-
-        // Assign the winner's sprite
-        Sprite winnerSprite = FindSpriteByName(playerSpriteName);
-        if (winnerSprite != null && winnerSpriteRenderer != null)
-        {
-            winnerSpriteRenderer.sprite = winnerSprite;
-            Debug.Log($"Assigned Winner Sprite: {playerSpriteName}");
-        }
-        else
-        {
-            Debug.LogError($"Could not assign Winner Sprite: {playerSpriteName}");
-        }
-
-        // Assign the loser's sprite
-        Sprite loserSprite = FindSpriteByName(computerSpriteName);
-        if (loserSprite != null && loserSpriteRenderer != null)
-        {
-            loserSpriteRenderer.sprite = loserSprite;
-            Debug.Log($"Assigned Loser Sprite: {computerSpriteName}");
-        }
-        else
-        {
-            Debug.LogError($"Could not assign Loser Sprite: {computerSpriteName}");
-        }
+        winnerSpriteRenderer.sprite = winnerSprite;
+        Debug.Log($"Assigned Winner Sprite: {playerSpriteName}");
+    }
+    else
+    {
+        Debug.LogError($"Could not assign Winner Sprite: {playerSpriteName}");
     }
 
-    private Sprite FindSpriteByName(string spriteName)
+    // Assign the loser's sprite
+    Sprite loserSprite = Resources.Load<Sprite>($"Sprites/{computerSpriteName}");
+    if (loserSprite != null && loserSpriteRenderer != null)
     {
-        // Find all SpriteRenderer objects in the scene
-        foreach (SpriteRenderer renderer in Object.FindObjectsByType<SpriteRenderer>(FindObjectsSortMode.None))
-        {
-            if (renderer.sprite != null && renderer.sprite.name == spriteName)
-            {
-                return renderer.sprite;
-            }
-        }
-
-        Debug.LogError($"Sprite with name '{spriteName}' not found in active objects!");
-        return null;
+        loserSpriteRenderer.sprite = loserSprite;
+        Debug.Log($"Assigned Loser Sprite: {computerSpriteName}");
     }
+    else
+    {
+        Debug.LogError($"Could not assign Loser Sprite: {computerSpriteName}");
+    }
+}
 
     public void ReturnToSelection()
     {
