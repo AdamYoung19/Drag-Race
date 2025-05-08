@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carName: 1968 Hemi Plymouth Barracuda
   carSprite: {fileID: 7172588321352612785, guid: 7d2aff894d604a04bb55ef64efca31b4, type: 3}
-  accelerationForce: 65
+  accelerationForce: 85
   brakingForce: 100
   carPrefab: {fileID: 2733510343289069898, guid: 52bbe75c29ae6b24dacf4432c7340cec, type: 3}
