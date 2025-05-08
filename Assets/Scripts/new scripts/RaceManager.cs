@@ -322,28 +322,13 @@ public class RaceManager : MonoBehaviour
         PlayerPrefs.SetString("PodiumWinner", winner.Key);
         PlayerPrefs.SetString("PodiumLoser", loser.Key);
 
-        // Save the sprites of the player and computer
-        foreach (AutoDrive2D car in raceParticipants)
+        string finalResults = "Final Results:\n";
+        foreach (var pair in finishTimes.OrderBy(p => p.Value))
         {
-            SpriteRenderer spriteRenderer = car.GetComponentInChildren<SpriteRenderer>();
-            if (spriteRenderer != null)
-            {
-                if (car.name == "Player")
-                {
-                    PlayerPrefs.SetString("PlayerSprite", spriteRenderer.sprite.name);
-                    Debug.Log($"Saved Player Sprite: {spriteRenderer.sprite.name}");
-                }
-                else if (car.name == "Computer")
-                {
-                    PlayerPrefs.SetString("ComputerSprite", spriteRenderer.sprite.name);
-                    Debug.Log($"Saved Computer Sprite: {spriteRenderer.sprite.name}");
-                }
-            }
-            else
-            {
-                Debug.LogError($"Car '{car.name}' does not have a SpriteRenderer!");
-            }
+            finalResults += $"{pair.Key}: {pair.Value:F2}s\n";
         }
+        finalResults += $"\n{winner.Key} Wins!";
+        statusText.text = finalResults;
 
         PlayerPrefs.Save();
 
