@@ -22,7 +22,7 @@ public class MainMenu : MonoBehaviour
 
     public void OptionsMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 4);
     }
 
 }
