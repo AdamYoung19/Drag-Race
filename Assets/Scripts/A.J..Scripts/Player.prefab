@@ -160,10 +160,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed4deb189b1e764fbe733eb0528c4f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCheckIntervalMin: 0
-  skillCheckIntervalMax: 2.5
-  skillCheckWindowDuration: 0.75
-  boostMultiplier: 1.75
+  skillCheckIntervalMin: 0.56
+  skillCheckIntervalMax: 2.42
+  skillCheckWindowDuration: 0.63
+  boostMultiplier: 1.62
   penaltyMultiplier: 0.6
   effectDuration: 0.25
   possibleKeys: 710000007700000065000000610000007300000064000000

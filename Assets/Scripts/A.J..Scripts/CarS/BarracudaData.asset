@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c51fb287e1314849925c0775a61be5a, type: 3}
-  m_Name: ChevyIIData
+  m_Name: BarracudaData
   m_EditorClassIdentifier: 
-  carName: 1967 Chevy II
-  carSprite: {fileID: 5018324637996761950, guid: d9161520c0f8cdd40ad61dfe570d021e, type: 3}
-  accelerationForce: 80
-  brakingForce: 100
+  carName: 1968 Hemi Plymouth Barracuda
+  carSprite: {fileID: 7172588321352612785, guid: 7d2aff894d604a04bb55ef64efca31b4, type: 3}
   carPrefab: {fileID: 2733510343289069898, guid: 52bbe75c29ae6b24dacf4432c7340cec, type: 3}
+  accelerationForce: 75.4
+  maxSpeed: 111.5
+  brakingForce: 100
+  skillCheckSpeedBoost: 9.7
+  skillCheckBoostDuration: 2.83

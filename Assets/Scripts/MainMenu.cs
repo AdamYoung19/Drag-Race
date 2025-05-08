@@ -10,18 +10,21 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
     }
 
-    //public void MainScreen() //This function is going to load the main menu when button is pressed
-    //{
-    //    ///SceneManager.LoadScene(SceneManager.SetActiveScene(0));
-    //}
+    public string mainMenuSceneName = "Title Screen"; //Set the name of the main menu scene
+    public void MainScreen() //This function is going to load the main menu when button is pressed
+    {
+        SceneManager.LoadScene(mainMenuSceneName);
+    }
 
     public void QuitGame()
     {
         Application.Quit();
     }
 
+    public string mainOptionsMenu = "OptionsMenu"; //Set the name of the Options scene
+
     public void OptionsMenu()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+        SceneManager.LoadScene(mainOptionsMenu); //Loads Options Scene
     }
 }

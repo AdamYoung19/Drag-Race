@@ -1,23 +1,18 @@
 using UnityEngine;
 
-// This allows you to create Car Data assets directly in the Project window.
-// Right-click in Project window -> Create -> RacingGame/Car Data
-[CreateAssetMenu(fileName = "NewCarData", menuName = "RacingGame/Car Data")]
+[CreateAssetMenu(fileName = "CarData", menuName = "RacingGame/Car Data")]
 public class CarData : ScriptableObject
 {
-    [Header("Info")]
-    public string carName = "Default Car";
-    public Sprite carSprite; // Assign the visual representation here
-    // Add other info like description if needed
+    public string carName;
+    public Sprite carSprite;
+    public GameObject carPrefab;
 
-    [Header("Performance Stats")]
-    [Tooltip("How quickly the car accelerates.")]
-    public float accelerationForce = 75f;
-    [Tooltip("How quickly the car brakes.")]
-    public float brakingForce = 100f;
-    // Add other stats like top speed, handling, etc. if desired
+    [Header("Movement")]
+    public float accelerationForce = 50f; // Your existing acceleration
+    public float maxSpeed = 100f;         // New: Maximum normal speed for the car
+    public float brakingForce = 30f;
 
-    [Header("Prefab")]
-    [Tooltip("The actual car prefab to spawn for this data.")]
-    public GameObject carPrefab; // Assign the corresponding car prefab
+    [Header("Skill Check")]
+    public float skillCheckSpeedBoost = 20f; // New: Specific speed increase from a successful skill check
+    public float skillCheckBoostDuration = 1.5f; // New: How long the skill check boost lasts
 }
